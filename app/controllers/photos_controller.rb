@@ -9,9 +9,12 @@ class PhotosController < ApplicationController
 
 	def create
 		@photo = Photo.new(photo_params[:photo])
-		@photo.save
+		if @photo.save
+    		redirect_to photos_url
+  		else
+	    	render 'new'
+		end
 
-		redirect_to photos_url
 	end
 
 	def show
